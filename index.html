@@ -5,17 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aurora Luxe Jewelry</title>
 
-  <!-- Google Font -->
+  <!-- Google Fonts: optimized loading -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap"
     rel="stylesheet"
+    media="print"
+    onload="this.media='all'"
   />
+  <noscript>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </noscript>
 
-  <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Tailwind CDN (deferred to reduce render-blocking) -->
   <script>
+    tailwind = window.tailwind || {};
     tailwind.config = {
       theme: {
         extend: {
@@ -34,8 +42,9 @@
           },
         },
       },
-    }
+    };
   </script>
+  <script src="https://cdn.tailwindcss.com" defer></script>
 
   <style>
     body {
@@ -146,12 +155,21 @@
 
           <div
             class="relative rounded-3xl overflow-hidden border border-slate-800/80 bg-slate-950/70 backdrop-blur-md shadow-[0_25px_80px_rgba(15,23,42,0.9)]">
-            <img
-              src="https://images.pexels.com/photos/1457801/pexels-photo-1457801.jpeg?auto=compress&cs=tinysrgb&w=1200"
-              alt="Luxury gold and diamond jewelry on black background"
-              class="w-full h-[360px] sm:h-[420px] object-cover"
-              loading="lazy"
-            />
+            <picture>
+              <source
+                type="image/webp"
+                srcset="https://images.pexels.com/photos/1457801/pexels-photo-1457801.jpeg?auto=compress&cs=tinysrgb&w=1200&format=webp"
+              />
+              <img
+                src="https://images.pexels.com/photos/1457801/pexels-photo-1457801.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                alt="Luxury gold and diamond jewelry on black background"
+                class="w-full h-[360px] sm:h-[420px] object-cover"
+                width="1200"
+                height="800"
+                decoding="async"
+                fetchpriority="high"
+              />
+            </picture>
 
             <div
               class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent pointer-events-none">
@@ -205,12 +223,22 @@
           <article
             class="group relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-950/70 backdrop-blur shadow-[0_20px_60px_rgba(15,23,42,0.85)]">
             <div class="relative">
-              <img
-                src="https://images.pexels.com/photos/1191531/pexels-photo-1191531.jpeg?auto=compress&cs=tinysrgb&w=1200"
-                alt="Diamond engagement ring on black background"
-                class="h-60 w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                loading="lazy"
-              />
+              <picture>
+                <source
+                  type="image/webp"
+                  srcset="https://images.pexels.com/photos/1191531/pexels-photo-1191531.jpeg?auto=compress&cs=tinysrgb&w=800&format=webp"
+                />
+                <img
+                  src="https://images.pexels.com/photos/1191531/pexels-photo-1191531.jpeg?auto=compress&cs=tinysrgb&w=800"
+                  alt="Diamond engagement ring on black background"
+                  class="h-60 w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  width="800"
+                  height="400"
+                  loading="lazy"
+                  decoding="async"
+                  sizes="(min-width: 768px) 33vw, 100vw"
+                />
+              </picture>
               <div
                 class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity">
               </div>
@@ -237,12 +265,22 @@
           <article
             class="group relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-950/70 backdrop-blur shadow-[0_20px_60px_rgba(15,23,42,0.85)]">
             <div class="relative">
-              <img
-                src="https://images.pexels.com/photos/1457805/pexels-photo-1457805.jpeg?auto=compress&cs=tinysrgb&w=1200"
-                alt="Golden necklace with gemstones"
-                class="h-60 w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                loading="lazy"
-              />
+              <picture>
+                <source
+                  type="image/webp"
+                  srcset="https://images.pexels.com/photos/1457805/pexels-photo-1457805.jpeg?auto=compress&cs=tinysrgb&w=800&format=webp"
+                />
+                <img
+                  src="https://images.pexels.com/photos/1457805/pexels-photo-1457805.jpeg?auto=compress&cs=tinysrgb&w=800"
+                  alt="Golden necklace with gemstones"
+                  class="h-60 w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  width="800"
+                  height="400"
+                  loading="lazy"
+                  decoding="async"
+                  sizes="(min-width: 768px) 33vw, 100vw"
+                />
+              </picture>
               <div
                 class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity">
               </div>
@@ -269,12 +307,22 @@
           <article
             class="group relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-950/70 backdrop-blur shadow-[0_20px_60px_rgba(15,23,42,0.85)]">
             <div class="relative">
-              <img
-                src="https://images.pexels.com/photos/1916888/pexels-photo-1916888.jpeg?auto=compress&cs=tinysrgb&w=1200"
-                alt="Minimal gold bracelets and rings"
-                class="h-60 w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                loading="lazy"
-              />
+              <picture>
+                <source
+                  type="image/webp"
+                  srcset="https://images.pexels.com/photos/1916888/pexels-photo-1916888.jpeg?auto=compress&cs=tinysrgb&w=800&format=webp"
+                />
+                <img
+                  src="https://images.pexels.com/photos/1916888/pexels-photo-1916888.jpeg?auto=compress&cs=tinysrgb&w=800"
+                  alt="Minimal gold bracelets and rings"
+                  class="h-60 w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  width="800"
+                  height="400"
+                  loading="lazy"
+                  decoding="async"
+                  sizes="(min-width: 768px) 33vw, 100vw"
+                />
+              </picture>
               <div
                 class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity">
               </div>
@@ -539,7 +587,7 @@
     href="https://wa.me/919123133451?text=Hello%21%20I%20am%20interested%20in%20your%20luxury%20jewelry%20collection.%20Please%20provide%20more%20details."
     target="_blank"
     rel="noopener noreferrer"
-    aria-label="Contact us on WhatsApp"
+    aria-label="Contact Us on WhatsApp"
     class="btn-whatsapp-float fixed z-40 bottom-6 right-6 sm:bottom-8 sm:right-8 flex items-center gap-3 rounded-full text-black pl-3 pr-4 py-2.5"
   >
     <span class="btn-whatsapp-icon-wrap flex h-11 w-11 shrink-0 items-center justify-center rounded-full">

@@ -21,7 +21,17 @@
     />
   </noscript>
 
-  <!-- Tailwind CDN (deferred to reduce render-blocking) -->
+  <!-- Preload hero image for better LCP -->
+  <link
+    rel="preload"
+    as="image"
+    href="https://images.pexels.com/photos/1457801/pexels-photo-1457801.jpeg?auto=compress&cs=tinysrgb&w=1200"
+    imagesrcset="https://images.pexels.com/photos/1457801/pexels-photo-1457801.jpeg?auto=compress&cs=tinysrgb&w=1200&format=webp 1200w,
+                 https://images.pexels.com/photos/1457801/pexels-photo-1457801.jpeg?auto=compress&cs=tinysrgb&w=1200 1200w"
+    imagesizes="100vw"
+  />
+
+  <!-- Tailwind CDN -->
   <script>
     tailwind = window.tailwind || {};
     tailwind.config = {
@@ -44,7 +54,7 @@
       },
     };
   </script>
-  <script src="https://cdn.tailwindcss.com" defer></script>
+  <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
     body {

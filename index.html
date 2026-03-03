@@ -31,7 +31,7 @@
     imagesizes="100vw"
   />
 
-  <!-- Tailwind CDN -->
+  <!-- Tailwind CDN (deferred to reduce main-thread work) -->
   <script>
     tailwind = window.tailwind || {};
     tailwind.config = {
@@ -54,11 +54,30 @@
       },
     };
   </script>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.tailwindcss.com" defer></script>
 
   <style>
+    /* Base styles so the page doesn't look unstyled before Tailwind loads */
+    * {
+      box-sizing: border-box;
+    }
     body {
+      margin: 0;
       font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background-color: #020617; /* night */
+      color: #e5e7eb; /* slate-200 */
+    }
+    a {
+      color: #fbbf24; /* gold */
+      text-decoration: none;
+    }
+    a:hover {
+      color: #facc15;
+    }
+    /* Prevent solid blue placeholder feeling for hero while image loads */
+    .hero-shell {
+      background: radial-gradient(circle at top, rgba(248, 250, 252, 0.05), transparent 55%),
+                  radial-gradient(circle at bottom, rgba(250, 191, 36, 0.08), transparent 60%);
     }
     /* WhatsApp floating button - golden yellow */
     .btn-whatsapp-float {
@@ -108,7 +127,7 @@
 
     <!-- Hero Section -->
     <section
-      class="relative overflow-hidden border-b border-slate-800/60 bg-[radial-gradient(circle_at_top,_rgba(248,250,252,0.05),_transparent_55%),radial-gradient(circle_at_bottom,_rgba(250,191,36,0.08),_transparent_60%)]">
+      class="relative overflow-hidden border-b border-slate-800/60 hero-shell">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 grid lg:grid-cols-2 gap-12 items-center">
         <!-- Text -->
         <div class="space-y-8">

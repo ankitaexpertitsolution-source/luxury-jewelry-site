@@ -8,6 +8,7 @@
   <!-- Google Fonts: optimized loading -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://images.pexels.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap"
     rel="stylesheet"
@@ -21,187 +22,18 @@
     />
   </noscript>
 
-  <!-- Preload hero image for better LCP -->
+  <!-- Preload hero image for better LCP (local WebP) -->
   <link
     rel="preload"
     as="image"
-    href="https://images.pexels.com/photos/1457801/pexels-photo-1457801.jpeg?auto=compress&cs=tinysrgb&w=1200"
-    imagesrcset="https://images.pexels.com/photos/1457801/pexels-photo-1457801.jpeg?auto=compress&cs=tinysrgb&w=1200&format=webp 1200w,
-                 https://images.pexels.com/photos/1457801/pexels-photo-1457801.jpeg?auto=compress&cs=tinysrgb&w=1200 1200w"
-    imagesizes="100vw"
+    type="image/webp"
+    href="images/hero.webp"
+    imagesrcset="images/hero.webp 800w,images/hero.webp 1200w"
+    imagesizes="(min-width: 1024px) 50vw, 100vw"
   />
 
-  <!-- Load non-critical CSS asynchronously -->
-  <link rel="preload" href="noncritical.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="noncritical.css"></noscript>
-
-  <!-- Preload Tailwind script -->
-  <link rel="preload" as="script" href="https://cdn.tailwindcss.com" />
-
-  <!-- Tailwind CDN (deferred to reduce main-thread work) -->
-  <script>
-    tailwind = window.tailwind || {};
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            night: '#020617',
-            nightSoft: '#020617cc',
-            gold: '#fbbf24',
-            goldSoft: '#facc15',
-          },
-          fontFamily: {
-            display: ['Playfair Display', 'serif'],
-            sans: ['Inter', 'system-ui', 'sans-serif'],
-          },
-          boxShadow: {
-            glow: '0 0 40px rgba(250, 191, 36, 0.25)',
-          },
-        },
-      },
-    };
-  </script>
-  <script src="https://cdn.tailwindcss.com" defer></script>
-
   <style>
-    /* Base styles so the page doesn't look unstyled before Tailwind loads */
-    * {
-      box-sizing: border-box;
-    }
-    body {
-      margin: 0;
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background-color: #020617; /* night */
-      color: #e5e7eb; /* slate-200 */
-    }
-    a {
-      color: #fbbf24; /* gold */
-      text-decoration: none;
-    }
-    a:hover {
-      color: #facc15;
-    }
-
-    /* Critical (above-the-fold) CSS for header + hero */
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 30;
-      background: rgba(2, 6, 23, 0.8);
-      border-bottom: 1px solid rgba(30, 41, 59, 0.6);
-      -webkit-backdrop-filter: blur(10px);
-      backdrop-filter: blur(10px);
-    }
-    .site-header__inner {
-      max-width: 72rem;
-      margin: 0 auto;
-      padding: 0 1rem;
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-    }
-
-    .hero-shell {
-      background: radial-gradient(circle at top, rgba(248, 250, 252, 0.05), transparent 55%),
-        radial-gradient(circle at bottom, rgba(250, 191, 36, 0.08), transparent 60%);
-    }
-    .hero-critical {
-      padding: 4rem 0;
-      overflow: hidden;
-    }
-    .hero-inner {
-      max-width: 72rem;
-      margin: 0 auto;
-      padding: 0 1rem;
-      display: grid;
-      gap: 3rem;
-      align-items: center;
-    }
-    .hero-copy {
-      max-width: 40rem;
-    }
-    .hero-title {
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
-      line-height: 1.05;
-      font-size: 2.25rem;
-      color: #f8fafc;
-      margin: 0;
-    }
-    .hero-subtitle {
-      margin: 1rem 0 0;
-      color: rgba(226, 232, 240, 0.85);
-      font-size: 1rem;
-      line-height: 1.6;
-    }
-    .hero-cta-row {
-      margin-top: 1.5rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      align-items: center;
-    }
-    .hero-cta-primary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      padding: 0.75rem 1.5rem;
-      border-radius: 999px;
-      background: #fbbf24;
-      color: #0b1220;
-      font-weight: 700;
-    }
-    .hero-cta-secondary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.75rem 1.25rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      color: rgba(226, 232, 240, 0.9);
-      background: transparent;
-    }
-    .hero-media {
-      border-radius: 1.5rem;
-      overflow: hidden;
-      border: 1px solid rgba(30, 41, 59, 0.75);
-      background: rgba(2, 6, 23, 0.9);
-      box-shadow: 0 25px 80px rgba(15, 23, 42, 0.9);
-    }
-    .hero-media img {
-      display: block;
-      width: 100%;
-      height: auto;
-      background: rgba(2, 6, 23, 0.9);
-    }
-
-    @media (min-width: 640px) {
-      .site-header__inner,
-      .hero-inner {
-        padding: 0 1.5rem;
-      }
-      .hero-title {
-        font-size: 3rem;
-      }
-    }
-    @media (min-width: 1024px) {
-      .site-header__inner,
-      .hero-inner {
-        padding: 0 2rem;
-      }
-      .hero-inner {
-        grid-template-columns: 1fr 1fr;
-      }
-      .hero-critical {
-        padding: 6rem 0;
-      }
-      .hero-title {
-        font-size: 3.75rem;
-      }
-    }
+    *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#020617;color:#e5e7eb}a{color:#fbbf24;text-decoration:none}a:hover{color:#facc15}.site-header{position:sticky;top:0;z-index:30;background:rgba(2,6,23,.8);border-bottom:1px solid rgba(30,41,59,.6);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}.site-header__inner{max-width:72rem;margin:0 auto;padding:0 1rem;height:64px;display:flex;align-items:center;justify-content:space-between;gap:1rem}.hero-shell{background:radial-gradient(circle at top,rgba(248,250,252,.05),transparent 55%),radial-gradient(circle at bottom,rgba(250,191,36,.08),transparent 60%)}.hero-critical{padding:4rem 0;overflow:hidden}.hero-inner{max-width:72rem;margin:0 auto;padding:0 1rem;display:grid;gap:3rem;align-items:center}.hero-copy{max-width:40rem}.hero-title{font-family:"Playfair Display",serif;font-weight:700;line-height:1.05;font-size:2.25rem;color:#f8fafc;margin:0}.hero-subtitle{margin:1rem 0 0;color:rgba(226,232,240,.85);font-size:1rem;line-height:1.6}.hero-cta-row{margin-top:1.5rem;display:flex;flex-wrap:wrap;gap:.75rem;align-items:center}.hero-cta-primary{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.75rem 1.5rem;border-radius:999px;background:#fbbf24;color:#0b1220;font-weight:700}.hero-cta-secondary{display:inline-flex;align-items:center;justify-content:center;padding:.75rem 1.25rem;border-radius:999px;border:1px solid rgba(148,163,184,.5);color:rgba(226,232,240,.9);background:transparent}.hero-media{border-radius:1.5rem;overflow:hidden;border:1px solid rgba(30,41,59,.75);background:rgba(2,6,23,.9);box-shadow:0 25px 80px rgba(15,23,42,.9)}.hero-media img{display:block;width:100%;height:auto;background:rgba(2,6,23,.9)}.btn-whatsapp-float{background:#fbbf24;box-shadow:0 4px 20px rgba(251,191,36,.45);transition:transform .2s ease,box-shadow .2s ease}.btn-whatsapp-float:hover{transform:scale(1.1);box-shadow:0 8px 30px rgba(251,191,36,.6)}.btn-whatsapp-icon-wrap{background:rgba(0,0,0,.12)}@media (min-width:640px){.site-header__inner,.hero-inner{padding:0 1.5rem}.hero-title{font-size:3rem}}@media (min-width:1024px){.site-header__inner,.hero-inner{padding:0 2rem}.hero-inner{grid-template-columns:1fr 1fr}.hero-critical{padding:6rem 0}.hero-title{font-size:3.75rem}}
   </style>
 </head>
 
@@ -294,21 +126,18 @@
 
           <div
             class="hero-media relative rounded-3xl overflow-hidden border border-slate-800/80 bg-slate-950/70 backdrop-blur-md shadow-[0_25px_80px_rgba(15,23,42,0.9)]">
-            <picture>
-              <source
-                type="image/webp"
-                srcset="https://images.pexels.com/photos/1457801/pexels-photo-1457801.jpeg?auto=compress&cs=tinysrgb&w=1200&format=webp"
-              />
-              <img
-                src="https://images.pexels.com/photos/1457801/pexels-photo-1457801.jpeg?auto=compress&cs=tinysrgb&w=1200"
-                alt="Luxury gold and diamond jewelry on black background"
-                class="w-full h-[360px] sm:h-[420px] object-cover"
-                width="1200"
-                height="800"
-                decoding="async"
-                fetchpriority="high"
-              />
-            </picture>
+            <img
+              src="images/hero.webp"
+              srcset="images/hero.webp 800w, images/hero.webp 1200w"
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              alt="Luxury gold and diamond jewelry on black background"
+              class="w-full h-[360px] sm:h-[420px] object-cover"
+              width="1200"
+              height="800"
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
+            />
 
             <div
               class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent pointer-events-none">
@@ -711,7 +540,7 @@
     <!-- Footer -->
     <footer class="border-t border-slate-800/70 py-6">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
-        <p>© <span id="year"></span> Aurora Luxe Jewelry. All rights reserved.</p>
+        <p>© 2026 Aurora Luxe Jewelry. All rights reserved.</p>
         <div class="flex items-center gap-4">
           <a href="#" class="hover:text-gold transition-colors">Privacy</a>
           <a href="#" class="hover:text-gold transition-colors">Terms</a>
@@ -741,9 +570,7 @@
     </span>
   </a>
 
-  <script>
-    // Set current year in footer
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+  <link rel="preload" href="styles.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="styles.min.css"></noscript>
+
 </body>
 </html>
